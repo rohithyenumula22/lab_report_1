@@ -16,14 +16,14 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.status(200).json({
-    name: "YOUR_NAME",
-    section: "YOUR_SECTION"
+    name: "Yenumula Venkata Rohith",
+    section: "CSE - 2E (211)"
   });
 });
 
 app.get('/time', (req, res) => {
   res.status(200).json({
-    currentTime: new Date().toISOString()
+    currentTime: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata', timeZoneName: 'short' })
   });
 });
 
