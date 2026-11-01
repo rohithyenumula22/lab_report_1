@@ -1,0 +1,39 @@
+const express = require('express');
+
+const app = express();
+
+const PORT = 3000;
+
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log(`${req.method} ${req.originalUrl} - ${res.statusCode}`);
+  });
+  next();
+});
+
+app.get('/', (req, res) => {
+  res.status(200).send('Welcome to Lab 1 Node.js and Express Server');
+});
+
+app.get('/about', (req, res) => {
+  res.status(200).json({
+    name: "YOUR_NAME",
+    section: "YOUR_SECTION"
+  });
+});
+
+app.get('/time', (req, res) => {
+  res.status(200).json({
+    currentTime: new Date().toISOString()
+  });
+});
+
+app.use((req, res) => {
+  res.status(404).json({
+    error: "Route not found"
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`Server running at http://localhost:${PORT}`);
+});
